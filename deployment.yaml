@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: goland-app-deployment
+  namespace: golang
+  labels:
+    app: goland-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: goland-app
+  template:
+    metadata:
+      labels:
+        app: goland-app
+    spec:
+      containers:
+      - name: goland-app
+        image: public.ecr.aws/x5b1r8j0/todogo:latest
+        ports:
+        - containerPort: 8080
+      restartPolicy: Always
